@@ -1,0 +1,23 @@
+
+services:
+  server:
+    build: ./server
+    
+  client:
+    build: ./client
+    depends_on:
+      - server
+    environment:
+      - INTERACTIVE=false
+      - SERVER_URL=ws://server:8080
+    deploy:
+      mode: replicated
+      replicas: 5
+  
+  interactive_client:
+    build: ./client
+    depends_on:
+      - server
+    environment:
+      - INTERACTIVE=true
+      - SERVER_URL=ws://server:8080
