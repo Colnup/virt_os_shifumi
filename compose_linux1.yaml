@@ -12,7 +12,7 @@ services:
       - server
     environment:
       - INTERACTIVE=false
-      - SERVER_URL=ws://server:8080
+      - SERVER_URL=ws://192.168.200.12:8080
     deploy:
       mode: replicated
       replicas: 1
