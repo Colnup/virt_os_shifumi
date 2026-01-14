@@ -1,13 +1,13 @@
 services:
   server:
     # pull from local registry
-    image: 192.168.200.17:5000/server:latest
+    image: 192.168.69.20:5000/server:latest
     ports:
       - "8080:8080"
     restart: always
 
   client:
-    image: 192.168.200.17:5000/client:latest
+    image: 192.168.69.20:5000/client:latest
     depends_on:
       - server
     environment:
