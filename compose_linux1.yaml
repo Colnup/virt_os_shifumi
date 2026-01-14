@@ -12,7 +12,7 @@ services:
       - server
     environment:
       - INTERACTIVE=false
-      - SERVER_URL=ws://host.docker.internal:8080
+      - SERVER_URL=ws://172.17.0.1:8080
     deploy:
       mode: replicated
       replicas: 1
