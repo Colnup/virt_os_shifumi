@@ -1,0 +1,10 @@
+services:
+  client:
+    build: ./client
+    environment:
+      - INTERACTIVE=false
+      - SERVER_URL=ws://192.168.200.12:8080
+    deploy:
+      mode: replicated
+      replicas: 3
+    restart: always

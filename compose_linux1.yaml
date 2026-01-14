@@ -1,0 +1,30 @@
+services:
+  server:
+    # pull from local registry
+    image: 192.168.200.17:5000/server:latest
+    networks:
+      - server_network
+    restart: always
+
+  client:
+    image: 192.168.200.17:5000/client:latest
+    depends_on:
+      - server
+    environment:
+      - INTERACTIVE=false
+      - SERVER_URL=ws://server:8080
+    deploy:
+      mode: replicated
+      replicas: 1
+    restart: always
+
+networks:
+  default:
+    driver: bridge
+  # Listen for external connections to the server
+  server_network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.enable_icc: "true"
+      com.docker.network.bridge.enable_ip_masquerade: "true"
+      com.docker.network.bridge.host_binding_ipv4: "0.0.0.0"
